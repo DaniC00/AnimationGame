@@ -1,31 +1,25 @@
 package com.mygdx.animagame;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class AnimaGame extends ApplicationAdapter {
+public class AnimaGame extends Game {
+
 	SpriteBatch batch;
-	Texture img;
-	
+	public BitmapFont font;
+
+	public static final int WIDTH = 1000, HEIGHT = 800;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		font = new BitmapFont(); // use libGDX's default Arial font
+
+		this.setScreen(new AnimaGameMenuScreen(this));
 	}
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
 }
