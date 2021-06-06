@@ -36,6 +36,8 @@ public class AnimaGameScreen implements Screen {
 	Rectangle trainer;
 	Texture trainerSprite;
 
+	Texture Background;
+
 	Texture walkSheet;
 
 	float stateTime;
@@ -47,6 +49,8 @@ public class AnimaGameScreen implements Screen {
 		camera.setToOrtho(false, AnimaGame.WIDTH, AnimaGame.HEIGHT);
 
 		walkSheet = new Texture(Gdx.files.internal("pokemon_trainer.png"));
+
+		Background = new Texture(Gdx.files.internal("Background.png"));
 
 		TextureRegion[][] tmp = TextureRegion.split(walkSheet,
 				walkSheet.getWidth() / FRAME_COLS,
@@ -114,6 +118,7 @@ public class AnimaGameScreen implements Screen {
 		// begin a new batch and draw the bucket and
 		// all drops
 		game.batch.begin();
+		game.batch.draw(Background,0,0);
 
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			game.batch.draw(walkLeftAnimation.getKeyFrame(stateTime, true), trainer.x, trainer.y);
@@ -157,6 +162,7 @@ public class AnimaGameScreen implements Screen {
 
 	@Override
 	public void dispose() {
+		Background.dispose();
 		game.batch.dispose();
 	}
 

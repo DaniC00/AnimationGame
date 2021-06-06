@@ -12,7 +12,7 @@ public class AnimaGame extends Game {
 	SpriteBatch batch;
 	public BitmapFont font;
 
-	public static final int WIDTH = 1000, HEIGHT = 800;
+	public static final int WIDTH = 590, HEIGHT = 700;
 
 	@Override
 	public void create () {
