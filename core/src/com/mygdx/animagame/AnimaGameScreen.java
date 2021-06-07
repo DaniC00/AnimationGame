@@ -79,10 +79,10 @@ public class AnimaGameScreen implements Screen {
 			}
 		}
 
-		walkDownAnimation = new Animation<TextureRegion>(0.076f, walkDownFrames);
-		walkLeftAnimation = new Animation<TextureRegion>(0.076f, walkLeftFrames);
-		walkRightAnimation = new Animation<TextureRegion>(0.076f, walkRightFrames);
-		walkUpAnimation = new Animation<TextureRegion>(0.076f, walkUpFrames);
+		walkDownAnimation = new Animation<TextureRegion>(0.08f, walkDownFrames);
+		walkLeftAnimation = new Animation<TextureRegion>(0.08f, walkLeftFrames);
+		walkRightAnimation = new Animation<TextureRegion>(0.08f, walkRightFrames);
+		walkUpAnimation = new Animation<TextureRegion>(0.08f, walkUpFrames);
 
 
 		trainer = new Rectangle();
@@ -100,12 +100,9 @@ public class AnimaGameScreen implements Screen {
 	public void render(float delta) {
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 		stateTime += Gdx.graphics.getDeltaTime();
-
-		// tell the camera to update its matrices.
+		
 		camera.update();
 
-		// tell the SpriteBatch to render in the
-		// coordinate system specified by the camera.
 		game.batch.setProjectionMatrix(camera.combined);
 
 		TextureRegion currentDownFrame = walkDownAnimation.getKeyFrame(stateTime, true);
@@ -114,24 +111,21 @@ public class AnimaGameScreen implements Screen {
 		TextureRegion currentUpFrame = walkUpAnimation.getKeyFrame(stateTime, true);
 
 
-
-		// begin a new batch and draw the bucket and
-		// all drops
 		game.batch.begin();
 		game.batch.draw(Background,0,0);
 
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 			game.batch.draw(walkLeftAnimation.getKeyFrame(stateTime, true), trainer.x, trainer.y);
-			trainer.x -= 100 * Gdx.graphics.getDeltaTime();
+			trainer.x -= 130 * Gdx.graphics.getDeltaTime();
 		} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
 			game.batch.draw(walkRightAnimation.getKeyFrame(stateTime, true), trainer.x, trainer.y);
-			trainer.x += 120 * Gdx.graphics.getDeltaTime();
+			trainer.x += 130 * Gdx.graphics.getDeltaTime();
 		} else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			game.batch.draw(walkUpAnimation.getKeyFrame(stateTime, true), trainer.x, trainer.y);
-			trainer.y += 120 * Gdx.graphics.getDeltaTime();
+			trainer.y += 130 * Gdx.graphics.getDeltaTime();
 		} else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
 			game.batch.draw(walkDownAnimation.getKeyFrame(stateTime, true), trainer.x, trainer.y);
-			trainer.y -= 100 * Gdx.graphics.getDeltaTime();
+			trainer.y -= 130 * Gdx.graphics.getDeltaTime();
 		} else {
 			game.batch.draw(walkDownAnimation.getKeyFrames()[1], trainer.x, trainer.y, trainer.width, trainer.height);
 		}
