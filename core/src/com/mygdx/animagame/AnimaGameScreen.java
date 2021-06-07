@@ -22,7 +22,6 @@ import java.util.Iterator;
 
 public class AnimaGameScreen implements Screen {
 	final AnimaGame game;
-	public BitmapFont font;
 
 	private static final int FRAME_COLS = 4, FRAME_ROWS = 4;
 
@@ -32,12 +31,8 @@ public class AnimaGameScreen implements Screen {
 	Animation<TextureRegion> walkUpAnimation;
 
 	OrthographicCamera camera;
-
 	Rectangle trainer;
-	Texture trainerSprite;
-
 	Texture Background;
-
 	Texture walkSheet;
 
 	float stateTime;
@@ -100,7 +95,7 @@ public class AnimaGameScreen implements Screen {
 	public void render(float delta) {
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 		stateTime += Gdx.graphics.getDeltaTime();
-		
+
 		camera.update();
 
 		game.batch.setProjectionMatrix(camera.combined);
